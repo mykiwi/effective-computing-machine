@@ -9,7 +9,6 @@
         "ext-iconv": "*",
         "async-aws/simple-s3": "^1.1",
         "bref/bref": "^1.2",
-        "doctrine/annotations": "^1.12",
         "io-developer/php-whois": "^4.0",
         "symfony/console": "^5.2",
         "symfony/dotenv": "^5.2",
