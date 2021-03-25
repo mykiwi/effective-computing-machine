@@ -1,0 +1,14 @@
+.dockerignore
+.git
+.gitignore
+.idea
+.serverless
+bin/.serverless
+bin/serverless
+Dockerfile
+docker-compose.yaml
+docker
+serverless.yaml
+symfony.lock
+var/
+vendor/

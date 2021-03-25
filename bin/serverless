@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+
+BASEDIR=$(dirname "$0")
+SERVERLESS_DIR=$BASEDIR/.serverless/
+SERVERLESS=$SERVERLESS_DIR/node_modules/.bin/serverless
+
+if [ ! -f $SERVERLESS ]; then
+    cd $SERVERLESS_DIR
+    npm ci
+    cd -
+fi
+
+exec $SERVERLESS "$@"

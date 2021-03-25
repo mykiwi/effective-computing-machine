@@ -1,3 +1,5 @@
+node_modules
+.serverless
 
 ###> symfony/framework-bundle ###
 /.env.local

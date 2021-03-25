@@ -1,0 +1,37 @@
+version: '3.9'
+services:
+  web:
+    image: bref/fpm-dev-gateway
+    ports:
+      - '8000:80'
+    volumes:
+      - ./public:/var/task/public:ro
+    environment:
+      HANDLER: public/index.php
+
+  php:
+    build: .
+    entrypoint: /opt/bin/php-fpm
+    command: --nodaemonize --fpm-config /opt/bref/etc/php-fpm.conf -d opcache.validate_timestamps=1 --force-stderr
+    volumes:
+      - ./docker/php/php-fpm.ini:/opt/bref/etc/php-fpm.conf
+
+#  localstack:
+#    image: localstack/localstack
+#    network_mode: bridge
+#    ports:
+#      - "4566:4566"
+#      - "4571:4571"
+#      - "${PORT_WEB_UI-8080}:${PORT_WEB_UI-8080}"
+#    environment:
+#      - SERVICES=s3
+#      - DEBUG=${DEBUG- }
+#      - DATA_DIR=${DATA_DIR- }
+#      - PORT_WEB_UI=${PORT_WEB_UI- }
+#      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR- }
+#      - KINESIS_ERROR_PROBABILITY=${KINESIS_ERROR_PROBABILITY- }
+#      - DOCKER_HOST=unix:///var/run/docker.sock
+#      - HOST_TMP_FOLDER=${TMPDIR}
+#    volumes:
+#      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
+#      - "/var/run/docker.sock:/var/run/docker.sock"

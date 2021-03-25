@@ -1,0 +1,21 @@
+service: expired-domain-auto-purchased
+
+provider:
+  name: aws
+  region: eu-west-3
+  ecr:
+    images:
+      app:
+        path: ./
+  environment:
+    # Symfony environment variables
+    APP_ENV: prod
+
+functions:
+  web:
+    image:
+      name: app
+    description: ''
+    timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
+    events:
+    - httpApi: '*'
