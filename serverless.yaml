@@ -9,6 +9,8 @@ provider:
         path: ./
   environment:
     # Symfony environment variables
+    BLACKFIRE_SERVER_ID: foo
+    BLACKFIRE_SERVER_TOKEN: bar
 
 functions:
   web:

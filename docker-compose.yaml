@@ -11,10 +11,22 @@ services:
 
   php:
     build: .
+    environment:
+      - APP_ENV=dev
+      - LAMBDA_TASK_ROOT
     entrypoint: /opt/bin/php-fpm
     command: --nodaemonize --fpm-config /opt/bref/etc/php-fpm.conf -d opcache.validate_timestamps=1 --force-stderr
     volumes:
+      - ./:/var/task
       - ./docker/php/php-fpm.ini:/opt/bref/etc/php-fpm.conf
+
+  blackfire:
+    image: blackfire/blackfire
+    environment:
+      - BLACKFIRE_SERVER_ID
+      - BLACKFIRE_SERVER_TOKEN
+      - BLACKFIRE_CLIENT_ID
+      - BLACKFIRE_CLIENT_TOKEN
 
 #  localstack:
 #    image: localstack/localstack
